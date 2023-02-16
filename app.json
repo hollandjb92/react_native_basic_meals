@@ -4,6 +4,7 @@
     "slug": "NativeRecipes",
     "version": "1.0.0",
     "orientation": "portrait",
+    "backgroundColor": "#241d0f",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
@@ -14,9 +15,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
