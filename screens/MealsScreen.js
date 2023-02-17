@@ -9,7 +9,18 @@ const MealsScreen = ({ route }) => {
   const mealsToDisplay = MEALS.filter((meal) => meal.categoryIds.includes(id));
 
   const renderMealItem = (itemData) => {
-    return <MealItem title={itemData.item.title} />;
+    const { title, imageUrl, duration, complexity, affordability } =
+      itemData.item;
+
+    return (
+      <MealItem
+        title={title}
+        url={imageUrl}
+        duration={duration}
+        complexity={complexity}
+        affordability={affordability}
+      />
+    );
   };
 
   return (
