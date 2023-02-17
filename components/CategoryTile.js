@@ -1,6 +1,7 @@
 import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
+// import {useNavigation} from '@react-navigation/native' **alternate option to avoid prop drilling the navigation object
 
-const CategoryTile = ({ category, color }) => {
+const CategoryTile = ({ category, color, onPress }) => {
   return (
     <View style={styles.outerView}>
       <Pressable
@@ -9,6 +10,7 @@ const CategoryTile = ({ category, color }) => {
           pressed ? styles.pressed : null,
         ]}
         android_ripple={{ color: "#d8d8d8" }}
+        onPress={onPress}
       >
         <View style={[styles.innerView, { backgroundColor: color }]}>
           <Text style={styles.text}>{category}</Text>
