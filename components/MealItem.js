@@ -6,12 +6,20 @@ import {
   Text,
   View,
 } from "react-native";
+import MealDetails from "./MealDetails";
 
-const MealItem = ({ title, url, duration, complexity, affordability }) => {
+const MealItem = ({
+  title,
+  url,
+  duration,
+  complexity,
+  affordability,
+  onPress,
+}) => {
   return (
     <View style={styles.outerContainer}>
       <Pressable
-        onPress={() => 5}
+        onPress={onPress}
         android_ripple={{ color: "#d8d8d8" }}
         style={({ pressed }) => (pressed ? styles.pressed : null)}
       >
@@ -20,11 +28,11 @@ const MealItem = ({ title, url, duration, complexity, affordability }) => {
             <Image source={{ uri: url, width: "100%", height: 200 }} />
             <Text style={styles.title}>{title}</Text>
           </View>
-          <View style={styles.detailContainer}>
-            <Text style={styles.details}>{duration} minutes</Text>
-            <Text style={styles.details}>{complexity}</Text>
-            <Text style={styles.details}>{affordability}</Text>
-          </View>
+          <MealDetails
+            complexity={complexity}
+            affordability={affordability}
+            duration={duration}
+          />
         </View>
       </Pressable>
     </View>
@@ -38,11 +46,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     padding: 8,
   },
-  details: {
-    textTransform: "capitalize",
-    marginHorizontal: 4,
-    fontSize: 12,
-  },
+
   outerContainer: {
     margin: 16,
     borderRadius: 8,
@@ -57,12 +61,6 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     shadowOpacity: 0.3,
     overflow: Platform.select({ android: "hidden", ios: "visible" }),
-  },
-  detailContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    padding: 8,
-    justifyContent: "center",
   },
   innerContainer: {
     borderRadius: 8,
