@@ -7,6 +7,9 @@ import DetailsScreen from "./screens/DetailsScreen";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import FavoritesScreen from "./screens/FavoritesScreen";
 import { Ionicons } from "@expo/vector-icons";
+// import FavoritesContextProvider from "./store/context/favoritesContext";
+import { Provider } from "react-redux";
+import { store } from "./store/redux/store";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -55,43 +58,48 @@ export default function App() {
   return (
     <>
       <StatusBar style="dark" />
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: "#ecae28",
-            },
-            contentStyle: {
-              backgroundColor: "#f8d07a",
-            },
-          }}
-        >
-          <Stack.Screen
-            name="Drawer"
-            component={DrawerNavigator}
-            options={{
-              headerShown: false,
+
+      <Provider store={store}>
+        {/* <FavoritesContextProvider> */}
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: "#ecae28",
+              },
+              contentStyle: {
+                backgroundColor: "#f8d07a",
+              },
             }}
-          />
-          <Stack.Screen
-            name="Meals"
-            component={MealsScreen}
-            // options={({ route, navigation }) => { ## one way to set dynamic options
-            //   const id = route.params.id;
-            //   return {
-            //     title: id,
-            //   };
-            // }}
-          />
-          <Stack.Screen
-            name="Details"
-            component={DetailsScreen}
-            // options={{ ## one one to set up header buttons IF you don't need to interact with the screen at all
-            //   headerRight: () => <Button title="click me" />,
-            // }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+          >
+            <Stack.Screen
+              name="Drawer"
+              component={DrawerNavigator}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="Meals"
+              component={MealsScreen}
+              // options={({ route, navigation }) => { ## one way to set dynamic options
+              //   const id = route.params.id;
+              //   return {
+              //     title: id,
+              //   };
+              // }}
+            />
+            <Stack.Screen
+              name="Details"
+              component={DetailsScreen}
+              // options={{ ## one one to set up header buttons IF you don't need to interact with the screen at all
+              //   headerRight: () => <Button title="click me" />,
+              // }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+        {/* </FavoritesContextProvider> */}
+      </Provider>
     </>
   );
 }
